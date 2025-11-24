@@ -27,3 +27,11 @@ Room rooms[MAX_ROOMS];
 Customer customers[MAX_CUSTOMERS];
 int customerCount = 0;
 
+void initializeRooms();
+void displayRooms();
+void bookRoom();
+void checkOut();
+void viewCustomers();
+void saveData();
+void loadData();
+void restoreRoomStatus();
