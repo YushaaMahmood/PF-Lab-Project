@@ -169,3 +169,20 @@ void viewCustomers() {
                customers[i].roomNumber, customers[i].days, customers[i].totalBill);
     }
 }
+
+void saveData() {
+    FILE *file = fopen("hotel_data.txt", "w");
+    int i;
+    if (file == NULL) {
+        printf("Error saving data.\n");
+        return;
+    }
+
+    fprintf(file, "%d\n", customerCount);
+    for (i = 0; i < customerCount; i++) {
+        fprintf(file, "%d %s %d %d %f\n", customers[i].customerID, customers[i].name,
+                customers[i].roomNumber, customers[i].days, customers[i].totalBill);
+    }
+
+    fclose(file);
+}
