@@ -186,3 +186,19 @@ void saveData() {
 
     fclose(file);
 }
+
+void loadData() {
+    FILE *file = fopen("hotel_data.txt", "r");
+    int i;
+    if (file == NULL) {
+        return;
+    }
+
+    fscanf(file, "%d", &customerCount);
+    for (i = 0; i < customerCount; i++) {
+        fscanf(file, "%d %s %d %d %f", &customers[i].customerID, customers[i].name,
+               &customers[i].roomNumber, &customers[i].days, &customers[i].totalBill);
+    }
+
+    fclose(file);
+}
