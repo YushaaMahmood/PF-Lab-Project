@@ -150,3 +150,8 @@ void checkOut() {
             break;
         }
     }
+
+    rooms[roomNum - 1].isBooked = 0;
+    strcpy(rooms[roomNum - 1].customerName, "");
+    rooms[roomNum - 1].days = 0;
+}
