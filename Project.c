@@ -46,3 +46,20 @@ void initializeRooms() {
         rooms[i].pricePerDay = 5000.0;
     }
 }
+
+void restoreRoomStatus() {
+    int i;
+    
+    for (i = 0; i < customerCount; i++) {
+        int roomIndex = customers[i].roomNumber - 1;
+        
+        
+        rooms[roomIndex].isBooked = 1;
+        strcpy(rooms[roomIndex].customerName, customers[i].name);
+        rooms[roomIndex].days = customers[i].days;
+    }
+    
+    if (customerCount > 0) {
+        printf("Restored %d booked room(s) from previous session.\n", customerCount);
+    }
+}
