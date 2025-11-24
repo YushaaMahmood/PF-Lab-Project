@@ -121,3 +121,32 @@ void bookRoom() {
 
     printf("Room %d successfully booked for %s. Total bill: %.2f\n", roomNum, name, newCustomer.totalBill);
 }
+
+void checkOut() {
+    int roomNum;
+    char buffer[100];
+    int i, j;
+    
+    printf("\nEnter room number to check out: ");
+    fgets(buffer, sizeof(buffer), stdin);
+    sscanf(buffer, "%d", &roomNum);
+
+    if (roomNum < 1 || roomNum > MAX_ROOMS || !rooms[roomNum - 1].isBooked) {
+        printf("Invalid room number or room not booked.\n");
+        return;
+    }
+
+    printf("Customer %s checked out. Total Bill: %.2f\n", rooms[roomNum - 1].customerName,
+           rooms[roomNum - 1].days * rooms[roomNum - 1].pricePerDay);
+
+    
+    for (i = 0; i < customerCount; i++) {
+        if (customers[i].roomNumber == roomNum) {
+            
+            for (j = i; j < customerCount - 1; j++) {
+                customers[j] = customers[j + 1];
+            }
+            customerCount--;
+            break;
+        }
+    }
