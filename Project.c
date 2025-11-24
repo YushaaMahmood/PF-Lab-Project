@@ -75,3 +75,49 @@ void displayRooms() {
         }
     }
 }
+
+void bookRoom() {
+    int roomNum;
+    char name[50];
+    char buffer[100];
+    int days;
+    int i;
+
+    printf("\nEnter room number to book (1-%d): ", MAX_ROOMS);
+    fgets(buffer, sizeof(buffer), stdin);
+    sscanf(buffer, "%d", &roomNum);
+
+    if (roomNum < 1 || roomNum > MAX_ROOMS) {
+        printf("Invalid room number.\n");
+        return;
+    }
+
+    if (rooms[roomNum - 1].isBooked) {
+        printf("Room is already booked.\n");
+        return;
+    }
+
+    printf("Enter customer name: ");
+    fgets(name, sizeof(name), stdin);
+    name[strcspn(name, "\n")] = '\0';  
+
+    printf("Enter number of days: ");
+    fgets(buffer, sizeof(buffer), stdin);
+    sscanf(buffer, "%d", &days);
+
+    rooms[roomNum - 1].isBooked = 1;
+    strcpy(rooms[roomNum - 1].customerName, name);
+    rooms[roomNum - 1].days = days;
+
+    Customer newCustomer;
+    newCustomer.customerID = customerCount + 1;
+    strcpy(newCustomer.name, name);
+    newCustomer.roomNumber = roomNum;
+    newCustomer.days = days;
+    newCustomer.totalBill = days * rooms[roomNum - 1].pricePerDay;
+
+    customers[customerCount] = newCustomer;
+    customerCount++;
+
+    printf("Room %d successfully booked for %s. Total bill: %.2f\n", roomNum, name, newCustomer.totalBill);
+}
