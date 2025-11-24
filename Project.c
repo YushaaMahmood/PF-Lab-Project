@@ -35,3 +35,14 @@ void viewCustomers();
 void saveData();
 void loadData();
 void restoreRoomStatus();
+
+void initializeRooms() {
+    int i;
+    for (i = 0; i < MAX_ROOMS; i++) {
+        rooms[i].roomNumber = i + 1;
+        rooms[i].isBooked = 0;
+        strcpy(rooms[i].customerName, "");
+        rooms[i].days = 0;
+        rooms[i].pricePerDay = 5000.0;
+    }
+}
