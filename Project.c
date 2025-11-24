@@ -63,3 +63,15 @@ void restoreRoomStatus() {
         printf("Restored %d booked room(s) from previous session.\n", customerCount);
     }
 }
+
+void displayRooms() {
+    int i;
+    printf("\nRoom Number\tStatus\n");
+    for (i = 0; i < MAX_ROOMS; i++) {
+        if (rooms[i].isBooked) {
+            printf("%d\t\tBooked by %s\n", rooms[i].roomNumber, rooms[i].customerName);
+        } else {
+            printf("%d\t\tAvailable\n", rooms[i].roomNumber);
+        }
+    }
+}
