@@ -202,3 +202,48 @@ void loadData() {
 
     fclose(file);
 }
+
+int main() {
+    int choice;
+    char buffer[100];
+
+    initializeRooms();
+    loadData();
+    restoreRoomStatus();  
+
+    do {
+        printf("\n==== HOTEL MANAGEMENT SYSTEM ====\n");
+        printf("1. Display Rooms\n");
+        printf("2. Book Room\n");
+        printf("3. Check Out\n");
+        printf("4. View Customers\n");
+        printf("5. Save & Exit\n");
+        printf("Enter your choice: ");
+        
+        fgets(buffer, sizeof(buffer), stdin);
+        sscanf(buffer, "%d", &choice);
+
+        switch (choice) {
+            case 1:
+                displayRooms();
+                break;
+            case 2:
+                bookRoom();
+                break;
+            case 3:
+                checkOut();
+                break;
+            case 4:
+                viewCustomers();
+                break;
+            case 5:
+                saveData();
+                printf("Data saved. Exiting...\n");
+                break;
+            default:
+                printf("Invalid choice. Try again.\n");
+        }
+    } while (choice != 5);
+
+    return 0;
+}
