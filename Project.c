@@ -155,3 +155,17 @@ void checkOut() {
     strcpy(rooms[roomNum - 1].customerName, "");
     rooms[roomNum - 1].days = 0;
 }
+
+void viewCustomers() {
+    int i;
+    if (customerCount == 0) {
+        printf("\nNo customers found.\n");
+        return;
+    }
+
+    printf("\nID\tName\t\t\tRoom\tDays\tBill\n");
+    for (i = 0; i < customerCount; i++) {
+        printf("%d\t%-20s\t%d\t%d\t%.2f\n", customers[i].customerID, customers[i].name,
+               customers[i].roomNumber, customers[i].days, customers[i].totalBill);
+    }
+}
